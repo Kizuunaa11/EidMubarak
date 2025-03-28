@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Ucapan Idul Fitri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            text-align: center;
+            font-family: 'Scheherazade New', serif;
+            position: relative;
+            flex-direction: column;
+        }
+        .mosque {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 200px;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 2;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            color: yellow;
+            font-weight: 700;
+        }
+        .translation {
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .next-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: yellow;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .crescent {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 80px;
+            height: 80px;
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: 15px 0px 0px 5px yellow;
+        }
+        .thr {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            font-size: 24px;
+            background: green;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+        }
+        .lantern {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 50px;
+            height: 80px;
+            background: gold;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 0, 0.8);
+        }
+        .ketupat {
+            position: absolute;
+            bottom: 20%;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            background: green;
+            transform: rotate(45deg);
+            box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.8);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Happy Eid Mubarak</h1>
+		<h1>for those who celebrate it</h1>
+        <p id="text">Tak ada kata seindah doa, tak ada perbuatan seindah memohon maaf atas segala salah. Selamat Idul Fitri 1446 H. Mohon maaf lahir dan batin.</p>
+        <p class="translation" id="translation">There are no words as beautiful as prayers, no deeds as beautiful as asking for forgiveness for all mistakes. Happy Eid al-Fitr 1446 H. I sincerely apologize for any wrongdoings.</p>
+        <p><b>تَقَبَّلَ اللَّهُ مِنَّا وَمِنكُمْ</b></p>
+        <button class="next-btn" onclick="startSlide()">Mulai</button>
+    </div>
+    <div class="mosque"></div>
+    <div class="crescent"></div>
+    <div class="thr">💸 THR Time! 💸</div>
+    <div class="lantern"></div>
+    <div class="ketupat"></div><!-- Audio Lagu Lebaran -->
+<audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-littleidea.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    let index = 0;
+    const texts = [
+        "Tak ada kata seindah doa, tak ada perbuatan seindah memohon maaf atas segala salah. Selamat Idul Fitri 1446 H. Mohon maaf lahir dan batin.",
+        "Semoga di hari yang fitri ini, kita semua mendapatkan keberkahan dan kebahagiaan.",
+        "Mari bersihkan hati, sucikan jiwa, dan sambut hari kemenangan dengan penuh syukur."
+    ];
+    const translations = [
+        "There are no words as beautiful as prayers, no deeds as beautiful as asking for forgiveness for all mistakes. Happy Eid al-Fitr 1446 H. I sincerely apologize for any wrongdoings.",
+        "May this blessed day bring us all happiness and prosperity.",
+        "Let's cleanse our hearts, purify our souls, and welcome this victorious day with gratitude."
+    ];
+
+    function startSlide() {
+        document.querySelector(".next-btn").style.display = "none";
+        setInterval(nextText, 4000);
+    }
+    
+    function nextText() {
+        const textElement = document.getElementById("text");
+        const translationElement = document.getElementById("translation");
+        textElement.style.animation = "fadeOut 1s ease-in-out";
+        translationElement.style.animation = "fadeOut 1s ease-in-out";
+        
+        setTimeout(() => {
+            index = (index + 1) % texts.length;
+            textElement.innerText = texts[index];
+            translationElement.innerText = translations[index];
+            textElement.style.animation = "fadeIn 1s ease-in-out";
+            translationElement.style.animation = "fadeIn 1s ease-in-out";
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
